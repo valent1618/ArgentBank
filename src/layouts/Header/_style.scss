@@ -1,0 +1,51 @@
+.header-nav {
+  z-index: 5;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: $colour-link;
+  }
+
+  .active {
+    color: $colour-primary;
+  }
+
+  .main-nav-logo {
+    display: flex;
+    align-items: center;
+    transition: $transition;
+
+    img {
+      max-width: 100%;
+      width: 200px;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

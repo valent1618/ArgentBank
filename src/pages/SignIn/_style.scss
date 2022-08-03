@@ -1,0 +1,57 @@
+#SignIn {
+  background-color: $colour-bgDark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .sign-in-content {
+    box-sizing: border-box;
+    box-shadow: 5px 5px 0px $colour-primary;
+    background-color: white;
+    width: 300px;
+    padding: 2rem;
+
+    .sign-in-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+
+      .sign-in-icon {
+        font-size: 5rem;
+        color: $colour-primary;
+      }
+    }
+
+    form {
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-bottom: 1rem;
+
+        label {
+          font-weight: bold;
+        }
+
+        input {
+          padding: 5px;
+          font-size: 1.2rem;
+        }
+      }
+
+      .input-remember {
+        display: flex;
+
+        label {
+          margin-left: 0.25rem;
+        }
+      }
+
+      .sign-in-button {
+        width: 100%;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

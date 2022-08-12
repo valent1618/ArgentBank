@@ -1,57 +1,96 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
+import { useStore, useSelector } from 'react-redux';
+import { user } from '../../app/selectors';
+import { getUser, updateUser } from '../../features/user';
+
+import { bankAccounts } from '../../data/features';
+import formatAmount from '../../utils/formatAmount';
+
+import Loader from '../../components/Loader';
 import AccountContent from '../../components/AccountContent';
 
 function User() {
+  const store = useStore();
+  const { token, firstName, lastName } = useSelector(user);
+
   let [edit, setEdit] = useState(false);
 
-  return (
-    <main id='User'>
-      {edit ? (
-        <div className='header'>
-          <h1>Welcome back</h1>
-          <div className='edit-input'>
-            <input type='text' id='fisrt-name' placeholder='Tony' />
-            <input type='text' id='last-name' placeholder='Jarvis' />
-          </div>
-          <div className='button-container'>
-            <button onClick={() => setEdit(!edit)}>Save</button>
-            <button onClick={() => setEdit(!edit)}>Cancel</button>
-          </div>
-        </div>
-      ) : (
-        <div className='header'>
-          <h1>
-            Welcome back
-            <br />
-            Tony Jarvis !
-          </h1>
-          <div className='button-container'>
-            <button onClick={() => setEdit(!edit)}>Edit Name</button>
-          </div>
-        </div>
-      )}
+  const navigate = useNavigate();
 
-      <h2 className='sr-only'>Accounts</h2>
-      <section className='content-container'>
-        <AccountContent
-          title='Checking (x8349)'
-          amount='$2,082.79'
-          description='Available'
-        />
-        <AccountContent
-          title='Savings (x6712)'
-          amount='$10,928.42'
-          description='Available'
-        />
-        <AccountContent
-          title='Credit Card (x8349)'
-          amount='$184.30'
-          description='Current'
-        />
-      </section>
-    </main>
-  );
+  useEffect(() => {
+    token != null ? getUser(store, token) : navigate('/');
+  }, [store, token, navigate]);
+
+  if (firstName === null) {
+    return (
+      <main id='User'>
+        <Loader />
+      </main>
+    );
+  } else {
+    return (
+      <main id='User'>
+        {firstName === null ? (
+          <Loader />
+        ) : edit ? (
+          <div className='header'>
+            <h1>Welcome back</h1>
+            <div className='edit-input'>
+              <input
+                type='text'
+                id='first-name'
+                placeholder={firstName}
+                minLength='2'
+                required
+              />
+              <input
+                type='text'
+                id='last-name'
+                placeholder={lastName}
+                minLength='2'
+                required
+              />
+            </div>
+            <p className='errorText hide'>Enter at least 2 characters</p>
+            <div className='button-container'>
+              <button
+                onClick={() => updateUser(store, token, setEdit)}
+                id='saveButton'
+              >
+                Save
+              </button>
+              <button onClick={() => setEdit(false)}>Cancel</button>
+            </div>
+          </div>
+        ) : (
+          <div className='header'>
+            <h1>
+              Welcome back
+              <br />
+              {`${firstName} ${lastName} !`}
+            </h1>
+            <div className='button-container'>
+              <button onClick={() => setEdit(true)}>Edit Name</button>
+            </div>
+          </div>
+        )}
+
+        <h2 className='sr-only'>Accounts</h2>
+        <section className='content-container'>
+          {bankAccounts.map((account) => (
+            <AccountContent
+              title={account.title}
+              amount={formatAmount(account.amount)}
+              description={account.description}
+              key={`Bank-Account-${account.title}`}
+            />
+          ))}
+        </section>
+      </main>
+    );
+  }
 }
 
 export default User;

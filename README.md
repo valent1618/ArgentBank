@@ -7,12 +7,6 @@ Work with backend available at : https://github.com/OpenClassrooms-Student-Cente
 
 > This is the thirteenth project of the formation "Développeur d'application - JavaScript React" - OpenClassrooms
 
-### Demo
-
-<https://valent1618.github.io/ArgentBank/>
-
-> Demo works with mocked data
-
 ## Getting Started
 
 ### Dependencies
@@ -55,17 +49,17 @@ yarn install
 
 1. In the backend directory, run :
 
-> Start local dev server
-
 ```
 npm run dev:server
 ```
 
-> Populate database with two users
+> Start local dev server
 
 ```
 npm run populate-db
 ```
+
+> Populate database with two users
 
 2. In the project directory, run:
 

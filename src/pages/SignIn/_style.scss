@@ -1,5 +1,6 @@
 #SignIn {
   background-color: $colour-bgDark;
+  padding: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,9 +50,14 @@
       }
 
       .sign-in-button {
+        transition: 0.4s;
         width: 100%;
         margin-top: 1rem;
       }
+    }
+
+    .errorText {
+      margin-top: 10px;
     }
   }
 }

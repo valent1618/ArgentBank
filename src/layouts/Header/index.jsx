@@ -1,10 +1,20 @@
 import { NavLink, Link } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { user } from '../../app/selectors';
+import { logout } from '../../features/user';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUserCircle,
+  faSignOut,
+  faSignIn,
+} from '@fortawesome/free-solid-svg-icons';
 import logo from '../../assets/argentBankLogo.png';
 
 function Header() {
-  let userConnected = false;
+  const { token, firstName } = useSelector(user);
+  const dispatch = useDispatch();
 
   return (
     <nav className='header-nav'>
@@ -12,19 +22,23 @@ function Header() {
         <img src={logo} alt='Argent Bank Logo' />
         <h1 className='sr-only'>Argent Bank</h1>
       </Link>
-      {userConnected ? (
+      {token != null ? (
         <div className='main-nav'>
-          <NavLink to='/user'>
+          <NavLink to='/user' id='userLink'>
             <FontAwesomeIcon icon={faUserCircle} />
-            Tony
+            {firstName}
           </NavLink>
-          <Link to='/'>
+          <Link to='/' onClick={() => dispatch(logout())}>
             <FontAwesomeIcon icon={faSignOut} />
             Sign Out
           </Link>
         </div>
       ) : (
         <div className='main-nav'>
+          <NavLink to='./sign-up'>
+            <FontAwesomeIcon icon={faSignIn} />
+            Sign Up
+          </NavLink>
           <NavLink to='./sign-in'>
             <FontAwesomeIcon icon={faUserCircle} />
             Sign In

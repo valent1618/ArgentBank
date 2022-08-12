@@ -67,7 +67,21 @@ button {
   padding: 8px;
   transition: $transition;
 
+  &.errorButton {
+    background-color: red;
+  }
+
   &:hover {
     opacity: 0.9;
+  }
+}
+
+.errorText {
+  transition: 0.4s;
+  color: red;
+  margin: 0;
+
+  &.hide {
+    display: none;
   }
 }

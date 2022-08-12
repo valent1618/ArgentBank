@@ -1,7 +1,24 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { useStore, useSelector } from 'react-redux';
+import { user } from '../../app/selectors';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Login } from '../../features/user';
+
 
 function SignIn() {
+  const store = useStore();
+  const { token } = useSelector(user);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    token != null && navigate('/user');
+  }, [token, navigate])
+
   return (
     <main id='SignIn'>
       <section className='sign-in-content'>
@@ -9,21 +26,22 @@ function SignIn() {
           <FontAwesomeIcon icon={faUserCircle} className='sign-in-icon' />
           <h1>Sign In</h1>
         </div>
-        <form>
+        <form onSubmit={(e) => Login(e, store)}>
           <div className='input-wrapper'>
             <label htmlFor='username'>Username</label>
-            <input type='text' id='username' />
+            <input type='email' id='username' required maxLength='64' defaultValue={localStorage.username ? localStorage.username : ''} />
           </div>
           <div className='input-wrapper'>
             <label htmlFor='password'>Password</label>
-            <input type='password' id='password' />
+            <input type='password' id='password' required minLength="8" maxLength='64' />
           </div>
           <div className='input-remember'>
-            <input type='checkbox' id='remember-me' />
+            <input type='checkbox' id='remember-me' defaultChecked={localStorage.remember ? true : false} />
             <label htmlFor='remember-me'>Remember me</label>
           </div>
           <button className='sign-in-button'>Sign In</button>
         </form>
+        <p className='errorText hide'>Email or password incorrect</p>
       </section>
     </main>
   );

@@ -34,7 +34,7 @@
     flex-direction: column;
   }
 
-  @media (min-width: 920px) {
+  @media (min-width: $break-laptot) {
     .hero {
       height: 400px;
       background-position: 0% 33%;

@@ -29,6 +29,7 @@
   }
 
   .transaction-button {
+    margin-top: 1em;
     width: 100%;
   }
 
@@ -37,11 +38,12 @@
     box-shadow: none;
   }
 
-  @media (min-width: 720px) {
+  @media (min-width: $break-tablet) {
     flex-direction: row;
     text-align: left;
 
     .transaction-button {
+      margin-top: 0;
       width: 200px;
     }
   }

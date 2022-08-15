@@ -36,15 +36,17 @@
     }
 
     .button-container {
-      justify-self: center;
-      position: absolute;
-      right: 0;
       display: flex;
       gap: 10px;
 
       button {
         font-size: 0.9rem;
         padding: 10px;
+      }
+
+      @media (min-width: $break-tablet) {
+        position: absolute;
+        right: 0;
       }
     }
   }

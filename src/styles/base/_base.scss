@@ -57,6 +57,12 @@ main {
   white-space: nowrap !important; /* 3 */
 }
 
+input {
+  font-size: 1.2rem;
+  padding: 7px;
+  transition: $transition;
+}
+
 button {
   cursor: pointer;
   border: none;

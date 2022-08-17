@@ -1,3 +1,11 @@
+/**
+ *
+ * @param { number } amount amount in cents
+ * @example
+ * // returns $1,618.03
+ * formatAmount(161803)
+ * @returns amount formatted to display in $ with a comma in the thousand
+ */
 function formatAmount(amount) {
   let format = amount / 100;
 

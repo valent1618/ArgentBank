@@ -25,12 +25,13 @@
       input {
         border: none;
         width: 30%;
-        font-size: 1.2rem;
-        padding: 7px;
-        transition: $transition;
 
         &:focus-visible {
           outline: 4px solid $colour-primary;
+
+          &:invalid {
+            outline: 4px solid red;
+          }
         }
       }
     }

@@ -2,7 +2,7 @@ import iconChat from '../assets/icon-chat.png';
 import iconMoney from '../assets/icon-money.png';
 import iconSecurity from '../assets/icon-security.png';
 
-export const features = [
+const features = [
   {
     icon: iconChat,
     name: 'Chat',
@@ -26,20 +26,4 @@ export const features = [
   },
 ];
 
-export const bankAccounts = [
-  {
-    title: 'Checking (x8349)',
-    amount: 208279,
-    description: 'Available',
-  },
-  {
-    title: 'Savings (x6712)',
-    amount: 1092842,
-    description: 'Available',
-  },
-  {
-    title: 'Credit Card (x8349)',
-    amount: 18430,
-    description: 'Current',
-  },
-];
+export default features;

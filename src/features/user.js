@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
+
 const initialState = {
   token: null,
   firstName: null,
@@ -35,8 +37,8 @@ export function signUp(e, store, navigate) {
   e.preventDefault();
   const email = e.target[0].value;
   const password = e.target[1].value;
-  const firstName = e.target[2].value;
-  const lastName = e.target[3].value;
+  const firstName = capitalizeFirstLetter(e.target[2].value);
+  const lastName = capitalizeFirstLetter(e.target[3].value);
   const connect = e.target[4].checked;
   const submitButton = document.getElementsByClassName('sign-up-button')[0];
   const errorText = document.getElementsByClassName('errorText')[0];
@@ -145,8 +147,8 @@ export function updateUser(store, token, setEdit) {
 
   const isValid = first.checkValidity() && last.checkValidity();
 
-  const firstName = first.value;
-  const lastName = last.value;
+  const firstName = capitalizeFirstLetter(first.value);
+  const lastName = capitalizeFirstLetter(last.value);
 
   if (isValid) {
     axios

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function AccountContent({ title, amount, description }) {
   return (
     <div className='account-content'>
@@ -12,3 +14,9 @@ function AccountContent({ title, amount, description }) {
 }
 
 export default AccountContent;
+
+AccountContent.propTypes = {
+  title: PropTypes.string,
+  amount: PropTypes.string,
+  description: PropTypes.string,
+};

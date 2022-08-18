@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Feature({ icon, name, title, description }) {
   return (
     <div className='feature-item'>
@@ -9,3 +11,10 @@ function Feature({ icon, name, title, description }) {
 }
 
 export default Feature;
+
+Feature.propTypes = {
+  icon: PropTypes.string,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+};

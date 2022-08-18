@@ -33,6 +33,13 @@ export default reducer;
 
 const BASE_URL_API = 'http://localhost:3001/api/v1/';
 
+/**
+ * Create new user in the ddb
+ * @param { object} e Event informations
+ * @param { object } store Redux store
+ * @param { Function } navigate 'navigate' of useNavigate() from react-router-dom
+ * @returns { ( store | Error) } If 'Connect me' is checked, user is login, else navigate to sign-in page
+ */
 export function signUp(e, store, navigate) {
   e.preventDefault();
   const email = e.target[0].value;
@@ -82,6 +89,12 @@ export function signUp(e, store, navigate) {
     });
 }
 
+/**
+ * Logs the user into the application
+ * @param { object} e Event informations
+ * @param { object } store Redux store
+ * @returns { ( store | Error) } Store token in redux, if 'Remember me' is checked, email is store in the local storage
+ */
 export function Login(e, store) {
   e.preventDefault();
   const email = e.target[0].value;
@@ -120,6 +133,12 @@ export function Login(e, store) {
     });
 }
 
+/**
+ * Get user details
+ * @param { object } store Redux store
+ * @param { string } token Bearer token
+ * @returns { ( store | Error) } Store user details in redux
+ */
 export function getUser(store, token) {
   axios
     .post(
@@ -139,6 +158,13 @@ export function getUser(store, token) {
     });
 }
 
+/**
+ * Update user details in ddb
+ * @param { object } store Redux store
+ * @param { string } token Bearer token
+ * @param { Function } setEdit set 'edit' state from useState
+ * @returns { ( store | Error) } Store new user details in redux
+ */
 export function updateUser(store, token, setEdit) {
   const first = document.getElementById('first-name');
   const last = document.getElementById('last-name');

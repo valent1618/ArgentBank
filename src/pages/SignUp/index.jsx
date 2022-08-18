@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignIn } from '@fortawesome/free-solid-svg-icons';
 import { signUp } from '../../features/user';
 
-import PATTERN from '../../utils/patternName';
+import PATTERN_NAME from '../../utils/patternName';
 
 function SignUp() {
   const store = useStore();
@@ -44,11 +44,21 @@ function SignUp() {
           </div>
           <div className='input-wrapper'>
             <label htmlFor='firstName'>First Name</label>
-            <input type='firstName' id='firstName' required pattern={PATTERN} />
+            <input
+              type='firstName'
+              id='firstName'
+              required
+              pattern={PATTERN_NAME}
+            />
           </div>
           <div className='input-wrapper'>
             <label htmlFor='lastName'>Last Name</label>
-            <input type='lastName' id='lastName' required pattern={PATTERN} />
+            <input
+              type='lastName'
+              id='lastName'
+              required
+              pattern={PATTERN_NAME}
+            />
           </div>
           <div className='input-connect'>
             <input type='checkbox' id='connect-me' />
